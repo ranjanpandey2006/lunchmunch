@@ -1,0 +1,37 @@
+<div ng-controller="MainCtrl">
+    <table class="table table-striped">
+    	<tr ng-show="!cartHasElement">  
+            <td><h3>Your cart is empty</h3></td>
+        </tr>
+        <tr ng-show="cartHasElement">  
+            <th class="partial-content-header">Description {{invoice.items.legth}}</th>
+            <th class="partial-content-header">Qty</th>
+            <th></th>
+            <th class="partial-content-header">Cost</th>
+            
+        </tr>
+        <tr ng-repeat="item in invoice.items" ng-show="cartHasElement">
+            <td>{{item.name}}</td>           
+            <td ng-show="!item.editQty">{{item.qty}}</td>
+            <td ng-show="item.editQty"><input style="width:30px" type="text" value="{{item.qty}}" ng-model="item.qty"/></td>
+            <td ng-show="!item.editQty"><a style="cursor:pointer" ng-model="item.editQty" ng-click="editQuantity($index)">Edit</a></td>
+            <td ng-show="item.editQty"><a style="cursor:pointer" ng-click="updateQty($index,item.qty)">Update</a></td>
+            <td>{{item.cost*item.qty | number:2 | currency}}</td>
+            <td>
+                [<a href ng-click="removeItem($index)">X</a>]
+            </td>
+        </tr>
+        <tr ng-show="cartHasElement">
+            <td></td>
+            <td></td>
+            <td><b>Total : </b></td>
+            <td><b>{{total() | currency}}</b></td>
+        </tr>
+        <tr ng-show="cartHasElement">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href ng-click="checkOut()">Checkout</a></td>
+        </tr>
+    </table>
+</div>

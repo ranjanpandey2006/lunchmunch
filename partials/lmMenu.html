@@ -1,0 +1,81 @@
+
+			<!--<div class="row" style="margin-top:55px;">
+				<div class="row" ng-show="lmMenu.items.length"  infinite-scroll='lmMenu.fetchMenu()' 
+					infinite-scroll-disabled='lmMenu.busy' infinite-scroll-distance='1'> -->
+					<!-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-repeat="j in lmMenu.items | filter:searchText">
+						<div class="box-style">
+							<div align="center" >
+								<h3>Product Id : {{j.id}}</h3>
+								<h4>Product Name : {{j.name}}</h4>
+								<h5>Product Description : {{j.description}}</h5>
+								<h4>Price : {{j.unitPrice | currency:" $ "}}</h4>
+								<h4>
+									Quantity : <select ng-model="selectedQty" 
+		            					ng-options="qty as qty for qty in qtyList"></select>
+								</h4>
+								<button class="btn btn-primary" ng-click="addItem($index,j.name,j.unitPrice,selectedQty)">Add to cart</button>&nbsp;
+							</div>
+						</div>
+					</div>
+					<div ng-show='lmMenu.busy'>Loading Menu...</div>
+					</div> -->
+					
+					<!--<div class="row" >
+				    	<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+				    		
+				    		<table class="table table-hover table-responsive">
+					    	
+					        <tr >  
+					            <th></th>
+					            <th class="partial-content-header">Description</th>
+					            <th class="partial-content-header">Cost</th>
+					            <th class="partial-content-header">Quantity</th>
+					            <th></th>
+					        </tr>
+					        <tr ng-repeat="j in lmMenu.items | filter:searchText">
+					                       
+					            <td ><img src="images/roti.jpg" /></td>
+					           <td class="partial-content-body" >{{j.description}}</td>
+					            <td class="partial-content-body">{{j.unitPrice | currency:" $ "}}</td>
+					            <td>
+					            	<select ng-model="selectedQty" class="form-control" 
+		            					ng-options="qty as qty for qty in qtyList"></select>
+					            </td>
+					            <td>
+					            	<button class="btn btn-primary" ng-click="addItem($index,j.name,j.unitPrice,selectedQty)">Add to cart</button>
+					            </td>
+					        </tr>
+					        
+					    </table>
+				    	</div>
+				</div>
+			</div>
+		</div>-->
+<table>
+	<tr>
+		<td >
+			<div class="row">
+				<div class="row" ng-show="lmMenu.items.length"  infinite-scroll='lmMenu.fetchMenu()' 
+					infinite-scroll-disabled='lmMenu.busy' infinite-scroll-distance='1'>
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" ng-repeat="j in lmMenu.items | filter:searchText">
+						<div class="box-style">
+							<div align="center" >
+								<img src="{{j.imageUrl}}" alt="Image Not Available" height="249px" width="300px" />
+								<h5>Product Description : {{j.description}}</h5>
+								<h4>Price : {{j.unitPrice | currency:" $ "}}</h4>
+								<h4>
+									Quantity : <select ng-model="selectedQty" 
+		            					ng-options="qty as qty for qty in qtyList"></select>
+								</h4>
+								<button class="btn btn-primary" ng-click="addItem($index,j.name,j.unitPrice,selectedQty)">Add to cart</button>&nbsp;
+							</div>
+						</div>
+					</div>
+					<div ng-show='lmMenu.busy'>Loading Menu...</div>
+					</div>
+			
+			</div>
+
+		</td>
+	</tr>
+</table>

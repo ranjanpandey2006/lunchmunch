@@ -1,0 +1,97 @@
+  <div ng-controller = "MenuCtrl as menu">
+ 
+   <nav id="menuNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" >
+        <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="container">
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a href="#" class="navbar-brand" style="margin-top:-10px;color:#00CC99;"><i style="font-size: 30px;font-weight: bold">LM</i><br><i>Lunch Munch</i></a>
+            <button data-target="#myModal" class="cartIcon navbar-toggle" data-toggle="modal" ng-click="clickOnCartIcon()">{{invoice.items.length}}</button>
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"  ng-class="{ active:menu.isSelected(1)}"><a ng-href="#/home" ng-click = "menu.selectTab(1)">Home</a></li>
+                <li ng-class="{ active:menu.isSelected(2)}"><a ng-href="#/menu" ng-click = "menu.selectTab(2)">Menu</a></li>
+                <!-- <li ng-class="{ active:menu.isSelected(6)}"><a ng-href="#/addItem" ng-click = "menu.selectTab(6)">Add Item</a></li> -->
+                <li ng-class="{ active:menu.isSelected(7)}"><a ng-href="#/cart" ng-click = "menu.selectTab(7)">Cart</a></li>
+                <li ng-class="{ active:menu.isSelected(5)}"><a href="#/contact" ng-click = "menu.selectTab(5)">Contact us</a></li>
+                <li >
+                    <button style="margin-top:0px" data-target="#myModal" class="cartIcon" data-toggle="modal" ng-click="clickOnCartIcon()">{{invoice.items.length}}</button>
+                </li>
+                
+            </ul>
+
+        </div>
+        </div>
+    </nav>
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content alert alert-danger box-style">
+
+                <div >
+                    <label class="partial-content-header">Cart Summary</label>
+                    <button class="close btn btn-danger" data-dismiss="modal" aria-hidden="true">X</button>
+                </div>
+                
+                <div class="modal-body">
+
+                    <div ng-controller="MainCtrl" class="table-responsive">
+                        <table class="table table-condensed table-hover" >
+                            <tr ng-show="!cartHasElement">  
+                                <td align="center"><h3>Your cart is empty</h3></td>
+                            </tr>
+                            <tr ng-show="cartHasElement">  
+                                <th class="partial-content-header">Description</th>
+                                <th class="partial-content-header">Quantity</th>
+                                <th></th>
+                                <th class="partial-content-header">Cost</th>
+                                
+                            </tr>
+                            <tr ng-repeat="item in invoice.items" ng-show="cartHasElement" class="partial-content-body">
+                                <td>{{item.name}}</td>           
+                                <td ng-show="!item.editQty" >{{item.qty}}</td>
+                                <td ng-show="item.editQty"><input style="width:30px" type="text" value="{{item.qty}}" ng-model="item.qty"/></td>
+                                <td ng-show="!item.editQty"><a style="cursor:pointer" ng-model="item.editQty" ng-click="editQuantity($index)">Edit</a></td>
+                                <td ng-show="item.editQty"><a style="cursor:pointer" ng-click="updateQty($index,item.qty)">Update</a></td>
+                                <td>{{item.cost*item.qty | number:2 | currency}}</td>
+                                <td>
+                                   <b> <a href ng-click="removeItem($index)" class="btn btn-danger">X</a> </b>
+                                </td>
+                            </tr>
+                            <tr ng-show="cartHasElement" class="partial-content-body">
+                                <td></td>
+                                <td></td>
+                                <td><b>Total </b></td>
+                                <td><b>{{total() | currency}}</b></td>
+                                
+                            </tr>
+                            <tr ng-show="cartHasElement" class="partial-content-body">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b><a href="#" data-dismiss="modal" ng-click="checkOut()">Checkout</a></b></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+              <!--  <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+ 

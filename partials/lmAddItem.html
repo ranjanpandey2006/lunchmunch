@@ -1,0 +1,51 @@
+<div >
+	<h3>Publish Jobs</h3>
+	<div class="label label-success" ng-show="showMsg">Job posted successfully !!!</div><br>
+	<div class="container">
+	        <div class="row">
+	            <div class="col-sm-6 col-md-4 col-lg-2">Job Description</div>
+	            <div class="col-sm-6 col-md-4 col-lg-2"><textarea ng-model="job.description"></textarea></div>
+	            <div class="clearfix visible-sm-block"></div>
+	            <div class="col-sm-6 col-md-4 col-lg-2">Expiry Date</div>
+	            <div class="clearfix visible-md-block"></div>
+	            <div class="col-sm-6 col-md-4 col-lg-2"><input type="text" ng-model="job.expiry_date"></input></div>
+	            <div class="clearfix visible-sm-block"></div>
+	            <div class="clearfix visible-lg-block"></div>
+	            <div class="col-sm-6 col-md-4 col-lg-2">Experience</div>
+	            <div class="col-sm-6 col-md-4 col-lg-2"><input type="text" ng-model="job.experience"></input></div>
+	            <div class="clearfix visible-sm-block"></div>
+	            <div class="clearfix visible-md-block"></div>
+	            <div class="col-sm-6 col-md-4 col-lg-2">Technology</div>
+	            <div class="col-sm-6 col-md-4 col-lg-2"><input type="text" ng-model="job.technology"></input></div>
+	            <div class="clearfix visible-sm-block"></div>
+	            <div class="clearfix visible-lg-block"></div>
+	            <div class="col-sm-6 col-md-4 col-lg-2"><button type="button" class="btn btn-warning" ng-click="postJob();">Post Job</button></div>
+	        </div>
+    </div>
+    <div ng-show="result.jobsObj.length">
+		<h3>Available Jobs</h3>
+		<div class="bs-example">
+		    <table class="table table-striped">
+		        <thead>
+		            <tr>
+		                <th>Job Id</th>
+		                <th>Job Description</th>
+		                <th>Technology</th>
+		                <th>Posted Date</th>
+		                <th>Expiry Date</th>
+		                <th>Experience</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr ng-repeat="j in result.jobsObj">
+		                <td>{{j.ID}}</td>
+		                <td>{{j.description}}</td>
+		                <td>{{j.technology}}</td>
+		                <td>{{j.posted_date}}</td>
+		                <td>{{j.expiry_date}}</td>
+		                <td>{{j.experience}}</td>
+		            </tr>
+		        </tbody>
+		    </table>
+</div>
+</div>
